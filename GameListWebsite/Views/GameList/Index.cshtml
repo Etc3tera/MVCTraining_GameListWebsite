@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "PS4 Game List";
+}
+@model List<GameListRepository.Models.GameInfo>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Developer</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model)
+        {
+        <tr>
+            <td>@game.Title</td>
+            <td>@string.Join(", ", game.Genre)</td>
+            <td>@game.Developer</td>
+            <td>@Html.ActionLink("View Detail", "Detail", new { gameId = game.Id })</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
