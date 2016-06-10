@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/Views/Shared/_AngularLayout.cshtml";
+    ViewBag.Title = "IndexAngular";
+}
+
+<div ng-controller="mainController">
+    <div class="col-md-12">
+        <form class="form-inline">
+            <div class="form-group" style="width: 33%">
+                <label>Genre</label>
+                <select class="form-control"
+                        ng-model="genre"
+                        ng-options="genre for genre in genreList"
+                        ng-change="refreshGameList();"></select>
+            </div>
+            <div class="form-group" style="width: 33%">
+                <label>Page</label>
+                <select class="form-control"
+                        ng-model="page"
+                        ng-options="p as p.label for p in pageList track by p.value"
+                        ng-change="refreshGameList();"></select>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-hover table-striped" id="gameTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Developer</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="game in gameList">
+                    <td>{{game.Title}}</td>
+                    <td>{{game.Genre | pprint}}</td>
+                    <td>{{game.Developer}}</td>
+                    <td>Detail</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+<script src="~/Scripts/angular/index.js"></script>
+}

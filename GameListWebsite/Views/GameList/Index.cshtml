@@ -1,27 +1,34 @@
 ﻿@{
     ViewBag.Title = "PS4 Game List";
 }
-@model List<GameListRepository.Models.GameInfo>
+<div>
+    <div class="col-md-12">
+        <form class="form-inline">
+            <div class="form-group" style="width: 33%">
+                <label>Genre</label>
+                <select class="form-control" id="genreList"></select>
+            </div>
+            <div class="form-group" style="width: 33%">
+                <label>Page</label>
+                <select class="form-control" id="pageList"></select>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-hover table-striped" id="gameTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Developer</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
 
-<table class="table table-hover table-striped">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Genre</th>
-            <th>Developer</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var game in Model)
-        {
-        <tr>
-            <td>@game.Title</td>
-            <td>@string.Join(", ", game.Genre)</td>
-            <td>@game.Developer</td>
-            <td>@Html.ActionLink("View Detail", "Detail", new { gameId = game.Id })</td>
-        </tr>
-        }
-    </tbody>
-</table>
-
+@section scripts{
+    <script src="~/Scripts/normal/index.js"></script>
+}
